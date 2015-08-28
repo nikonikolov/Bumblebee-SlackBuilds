@@ -42,20 +42,30 @@ This script will (in addition to downloading & installing everything in order):
  - Detect Multilib
  - Create the necessary /etc/rc.d/rc.local* entries
  - Create the bumblebee group and add all normal users to it
- - Add a reinstall script inside of ~/Bumblebee-SlackBuilds/
-
-To run it, do:
-
-    sh ~/Bumblebee-SlackBuilds/crazybee-reinstall.sh
-
-This script bypasses the repo detection. For updates, delete or rename the ~/Bumblebee-SlackBuilds/ folder and run the standard crazybee script below.
+ - Add a copy of crazybee inside of ~/Bumblebee-SlackBuilds/ for reinstalls
 
 Simply run this as root:
 
+Current:
+
     curl https://raw.githubusercontent.com/ryanpcmcquen/linuxTweaks/master/slackware/crazybee.sh | sh
+
+Stable:
+
+    curl https://raw.githubusercontent.com/ryanpcmcquen/linuxTweaks/master/slackware/crazybee.sh | STABLE=yes sh
 
 P.S. This script uses upgradepkg --reinstall --install-new, so you can use it after kernel upgrades.  
 ;^)
+
+For reinstalls, run:
+
+Current:
+
+    sh ~/Bumblebee-SlackBuilds/crazybee.sh
+
+Stable:
+
+    STABLE=yes sh ~/Bumblebee-SlackBuilds/crazybee.sh
 
 
 ### The MANUAL way:
@@ -141,35 +151,16 @@ P.S. This script uses upgradepkg --reinstall --install-new, so you can use it af
   slackware, it will however come back unless you add `xf86-video-nouveau`
   to `/etc/slackpkg/blacklist`  
 
-###8. Build and install `libvdpau` (Optional, not needed if using nouveau):  
-```
-    cd libvdpau  
-    ./libvdpau.Slackbuild  
-    upgradepkg --install-new /tmp/libvdpau-<ver-arch-build>_bbsb.txz  
-    cd ..  
-```
-
-###9. Build and install `nvidia-kernel` (Optional, not needed if using nouveau):  
+###8. Build and install `nvidia-kernel` (Optional, not needed if using nouveau):  
 ```
     cd nvidia-kernel  
-```
-  For pure 32 or 64 bit systems, build via:
-```
     ./nvidia-kernel.Slackbuild  
-```
-  If the system is x86_64 based, 32-bit compatible binaries and
-  libraries can be built via:  
-```
-    COMPAT32=yes ./nvidia-kernel.SlackBuild  
-```
-  Then install:  
-```
     upgradepkg --install-new /tmp/nvidia-kernel-<ver-arch-build>_bbsb.txz
     cd ..  
 ```
   - Note: This will need to be rebuilt when you upgrade the kernel.  
 
-###10. Build and install `nvidia-bumblebee` (Optional, not needed if using nouveau):  
+###9. Build and install `nvidia-bumblebee` (Optional, not needed if using nouveau):  
 ```
     cd nvidia-bumblebee  
 ```
@@ -188,7 +179,7 @@ P.S. This script uses upgradepkg --reinstall --install-new, so you can use it af
     cd ..  
 ```
 
-###11. Run the `rc.bumblebee` script:  
+###10. Run the `rc.bumblebee` script:  
 ```
      chmod +x /etc/rc.d/rc.bumblebeed  
      /etc/rc.d/rc.bumblebeed start  
@@ -208,10 +199,10 @@ P.S. This script uses upgradepkg --reinstall --install-new, so you can use it af
     fi  
 ```
 
-###12. Reboot:  
+###11. Reboot:  
   Not really a step, but you need to get all the new goodness started somehow.
 
-###13. Now an application can run with `primusrun`:  
+###12. Now an application can run with `primusrun`:  
 ```
     primusrun glxgears  
 ```
