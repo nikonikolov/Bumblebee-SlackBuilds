@@ -151,7 +151,15 @@ Stable:
   slackware, it will however come back unless you add `xf86-video-nouveau`
   to `/etc/slackpkg/blacklist`  
 
-###8. Build and install `nvidia-kernel` (Optional, not needed if using nouveau):  
+###8. Build and install `libvdpau` (Optional, not needed if using nouveau):  
+```
+    cd libvdpau  
+    ./libvdpau.Slackbuild  
+    upgradepkg --install-new /tmp/libvdpau-<ver-arch-build>_bbsb.txz  
+    cd ..  
+```
+
+###9. Build and install `nvidia-kernel` (Optional, not needed if using nouveau):  
 ```
     cd nvidia-kernel  
     ./nvidia-kernel.Slackbuild  
@@ -160,7 +168,7 @@ Stable:
 ```
   - Note: This will need to be rebuilt when you upgrade the kernel.  
 
-###9. Build and install `nvidia-bumblebee` (Optional, not needed if using nouveau):  
+###10. Build and install `nvidia-bumblebee` (Optional, not needed if using nouveau):  
 ```
     cd nvidia-bumblebee  
 ```
@@ -179,7 +187,7 @@ Stable:
     cd ..  
 ```
 
-###10. Run the `rc.bumblebee` script:  
+###11. Run the `rc.bumblebee` script:  
 ```
      chmod +x /etc/rc.d/rc.bumblebeed  
      /etc/rc.d/rc.bumblebeed start  
@@ -199,10 +207,10 @@ Stable:
     fi  
 ```
 
-###11. Reboot:  
+###12. Reboot:  
   Not really a step, but you need to get all the new goodness started somehow.
 
-###12. Now an application can run with `primusrun`:  
+###13. Now an application can run with `primusrun`:  
 ```
     primusrun glxgears  
 ```
