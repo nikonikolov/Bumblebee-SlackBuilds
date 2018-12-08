@@ -244,10 +244,10 @@ cd $TMP/${PKGNAM[0]}
 cd $TMP/${PKGNAM[1]}
   cd src/libXNVCtrl
     make clean
-    CFLAGS="$SLKCFLAGS" make
+    CFLAGS="$SLKCFLAGS" make -j8
   cd -
 
-  CFLAGS="$SLKCFLAGS" make
+  CFLAGS="$SLKCFLAGS" make -j8
   make install BINDIR=$PKG/usr/bin/ mandir=$PKG/usr/man/man1 LIBDIR=$PKG/usr/lib${LIBDIRSUFFIX}/$PRGNAM/
 
   install -m 644 doc/nvidia-settings.desktop $PKG/usr/share/applications
@@ -261,14 +261,14 @@ cd $TMP/${PKGNAM[1]}
 
 # nvidia-xconfig
 cd $TMP/${PKGNAM[2]}
-  CFLAGS="$SLKCFLAGS" make
+  CFLAGS="$SLKCFLAGS" make -j8
   make install BINDIR=$PKG/usr/bin/ MANDIR=$PKG/usr/man/man1
 
   cp COPYING $PKG/usr/doc/$PRGNAM-$VERSION/COPYING.nvidia-xconfig
 
 # nvidia-modprobe
 cd $TMP/${PKGNAM[3]}
-  CFLAGS="$SLKCFLAGS" make
+  CFLAGS="$SLKCFLAGS" make -j8
   make install BINDIR=$PKG/usr/bin/ MANDIR=$PKG/usr/man/man1
 
   cp COPYING $PKG/usr/doc/$PRGNAM-$VERSION/COPYING.nvidia-modprobe

@@ -73,7 +73,7 @@ chmod -R u+w,go+r-w,a-s .
 
 cd kernel || exit 1
 
-make SYSSRC=$KERNELPATH module || exit 1
+make SYSSRC=$KERNELPATH module -j8 || exit 1
 
 mkdir -p $PKG/lib/modules/$KERNEL/kernel/drivers/video
 install -m 0664 *.ko $PKG/lib/modules/$KERNEL/kernel/drivers/video/
